@@ -1,4 +1,4 @@
-package todolistApi.Entity;
+package todolistApi.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
