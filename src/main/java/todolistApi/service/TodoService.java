@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import todolistApi.entity.Todo;
 import todolistApi.repository.TodoRepository;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +31,7 @@ public class TodoService {
     public void updateTodo(Integer id, Todo todo){
         Todo todos = repository.findById(id).get();
         todos.setTodo(todo.getTodo());
+        todos.setDate(Timestamp.from(Instant.now()));
         repository.save(todos);
     }
 }

@@ -6,4 +6,5 @@ import todolistApi.entity.Todo;
 
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Integer> {
+
 }

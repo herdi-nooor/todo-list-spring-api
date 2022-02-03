@@ -2,6 +2,7 @@ package todolistApi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import todolistApi.entity.Todo;
@@ -25,11 +26,8 @@ public class TodoController {
         return new ResponseEntity<>(body, HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping(value = "/create", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<ApiResponse> createTodo(@Valid @RequestBody Todo todo){
-        if (Objects.nonNull(service.readTodo(todo.getId()))){
-            return new ResponseEntity<ApiResponse>(new ApiResponse(false, "sudah ada"), HttpStatus.CONFLICT);
-        }
         service.createTodo(todo);
         return new ResponseEntity<>(new ApiResponse(true, "berhasil di tambahkan"), HttpStatus.CREATED);
     }
