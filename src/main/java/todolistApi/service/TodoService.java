@@ -8,6 +8,7 @@ import todolistApi.repository.TodoRepository;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -33,5 +34,14 @@ public class TodoService {
         todos.setTodo(todo.getTodo());
         todos.setDate(Timestamp.from(Instant.now()));
         repository.save(todos);
+    }
+
+    public boolean deleteTodo(Integer id){
+        if (repository.findById(id).isPresent()) {
+            repository.deleteById(id);
+            return true;
+        }else {
+            return false;
+        }
     }
 }

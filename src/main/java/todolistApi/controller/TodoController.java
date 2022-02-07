@@ -40,4 +40,13 @@ public class TodoController {
         }
         return new ResponseEntity<>(new ApiResponse(false, "todo tidak  di temukan "), HttpStatus.NOT_FOUND);
     }
+
+    @DeleteMapping("/delete/{todoId}")
+    public ResponseEntity<ApiResponse> deleteTodo(@PathVariable("todoId") Integer todoId){
+        if (service.deleteTodo(todoId)){
+            return new ResponseEntity<ApiResponse>(new ApiResponse(true, "delete berhasil"), HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(new ApiResponse(false, "todo tidak  di temukan "), HttpStatus.NOT_FOUND);
+        }
+    }
 }
